@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.hide{
+display: none;
+}
+</style>
+<script type="text/javascript">
+function show() {
+if(document.getElementById('t4').value=="true"){
+document.getElementById("hide").className = "";
+}
+else{
+document.getElementById("hide").className = ""; 
+document.getElementById("hide").className = "hide";
+}
+}
+function display() {
+var name = document.getElementById('t1').value;
+var desc = document.getElementById('t2').value;
+var cost = document.getElementById('t3').value;
+var vtype = document.getElementById('t4').value;
+var fueltype = document.getElementById('t5').value;
+
+function Vehicle(name, desc, cost, vtype, fueltype) {
+this.Name = name;
+this.Description = desc;
+this.VehicleType = vtype;
+this.CostPerKilometer = cost;
+}
+
+function fourwheeler(){
+this.FuelType = fueltype ;
+}
+
+//function twowheeler(){}
+
+fourwheeler.prototype = new Vehicle(name, desc, cost, vtype, fueltype);
+//twowheeler.prototype = new Vehicle(name, desc, cost, vtype, fueltype);
+
+var veh4 = new fourwheeler();
+//var veh2 = new twowheeler();  
+
+console.log(veh4.Name);
+console.log(veh4.Description);
+console.log(veh4.VehicleType);
+console.log(veh4.CostPerKilometer);
+if(document.getElementById('t4').value=="true"){
+console.log(veh4.FuelType);
+}
+if(document.getElementById('t4').value=="true"){
+  document.write("<center><h1>Four Wheeler Details</h1><p>Name:" + veh4.Name + "<p>Description:" + veh4.Description + "<p>Cost per Km:" + veh4.CostPerKilometer + "<p>Vehicle Type: 4-Wheeler<p>Fuel Type:" + veh4.FuelType);
+ }
+ else{
+ document.write("<center><h1>Two Wheeler Details</h1><p>Name:" + veh4.Name + "<p>Description:" + veh4.Description + "<p>Cost per Km:" + veh4.CostPerKilometer + "<p>Vehicle Type: 2-Wheeler");
+ }
+}
+</script>
+</head>
+<body>
+<form name="frm1" id="frm1" method="post" action="">
+<table border="1px" width="300px" height="300px">
+<caption>Vehicle Form</caption>
+<tr>
+<th>Name</th><td><input type="text" placeholder="Name" name="t1" id="t1" /></td>
+</tr>
+<tr>
+<th>Description</th><td><input type="text" placeholder="Description" name="t2" id="t2"  /></td>
+</tr>
+<tr>
+<th>Cost per kilometer</th><td><input type="text" placeholder="Cost per kilometer" name="t3" id="t3" /></td>
+</tr>
+<tr>
+<th>Vehicle type</th><td><select name="t4" id="t4" onClick="show()">
+<option>Vehicle type</option>
+<option>Two wheeler </option>
+<option value="true">Four wheeler </option>
+</select></td>
+</tr>
+<tr class="hide" id="hide">
+<th>Fuel Type</th><td><select   name="t5" id="t5" />
+<option >CNG</option>
+<option >Petrol </option>
+</td>
+</tr>
+
+<tr><th></th><td><input type="submit" value="Submit"  onclick="display();return false;"/></td></tr>
+
+</table>
+</form>
+</body>
+</html>
+
+
